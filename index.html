@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BLT Character Sheet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Source+Sans+3:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/sheet.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <main class="sheet">
+        <header class="sheet-header">
+          <div>
+            <p class="sheet-sub" id="sheet-sub">Канал: #…</p>
+            <h1 class="sheet-title" id="hero-name">—</h1>
+            <div style="margin-top: 0.45rem">
+              <span class="status-pill" id="conn-status" data-state="offline">Offline</span>
+              <span class="muted" style="margin-left: 0.5rem; font-size: 0.85rem"
+                >Зритель: <strong id="user-label">гость</strong></span
+              >
+            </div>
+          </div>
+          <div class="header-actions">
+            <input
+              id="channel-input"
+              placeholder="канал стримера"
+              style="
+                width: 9.5rem;
+                background: #120e0b;
+                border: 1px solid #3d3228;
+                border-radius: 4px;
+                padding: 0.4rem 0.55rem;
+              "
+            />
+            <button type="button" id="btn-apply-channel" class="ghost">Канал</button>
+            <button type="button" id="btn-login" class="primary">Войти Twitch</button>
+            <button type="button" id="btn-logout" hidden>Выйти</button>
+            <button type="button" id="btn-connect">Чат</button>
+            <button type="button" id="btn-refresh" disabled>!инв</button>
+          </div>
+        </header>
+
+        <nav class="tabs" id="tabs" aria-label="Модули листа"></nav>
+        <div class="module-host" id="module-host"></div>
+      </main>
+
+      <aside class="player-dock">
+        <div class="player-frame" id="twitch-player"></div>
+        <section class="side-card">
+          <h2>Как это работает</h2>
+          <ul>
+            <li>Страница на GitHub Pages / localhost (не бесплатный Neocities — там CSP режет Twitch).</li>
+            <li>Данные героя читаются из ответа бота BLT в чате (как !info).</li>
+            <li>Стрим может быть оффлайн — достаточно запущенной кампании и бота в чате.</li>
+            <li>Плеер — официальный Twitch Embed (просмотры считаются, когда стрим online).</li>
+          </ul>
+          <p class="muted" style="margin: 0.6rem 0 0.2rem; font-size: 0.8rem">
+            Redirect URI для Twitch Console (скопируй 1-в-1):
+          </p>
+          <code
+            id="redirect-uri-hint"
+            style="
+              display: block;
+              word-break: break-all;
+              font-size: 0.72rem;
+              color: #e8dcc8;
+              background: #120e0b;
+              border: 1px solid #3d3228;
+              padding: 0.4rem;
+              border-radius: 4px;
+            "
+            >…</code
+          >
+          <div class="log-box" id="event-log">Лог…</div>
+        </section>
+      </aside>
+    </div>
+
+    <div class="toast" id="toast" role="status"></div>
+
+    <script src="./config.js"></script>
+    <script type="module" src="./js/app.js"></script>
+  </body>
+</html>
